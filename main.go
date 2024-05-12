@@ -3,14 +3,11 @@ package main
 import (
 	"crypto/sha256"
 	"encoding/hex"
+	"lab6/entities"
 	"log"
 
 	"github.com/gin-gonic/gin"
 )
-
-type TestData struct {
-	DecodeString string `json:"decodeString"`
-}
 
 func main() {
 	r := gin.Default()
@@ -18,7 +15,7 @@ func main() {
 		ctx.String(200, "Work")
 	})
 	r.POST("/sha256", func(ctx *gin.Context) {
-		var testData TestData
+		var testData entities.TestData
 
 		err := ctx.ShouldBindJSON(&testData)
 		if err != nil {
